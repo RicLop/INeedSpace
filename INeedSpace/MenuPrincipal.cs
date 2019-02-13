@@ -78,24 +78,24 @@ namespace INeedSpace
 
         public static void Menu(List<Diretorio> listaSubpastasOrder, string caminho)
         {
-            var subpasta = new Diretorio();
+            var diretorio = new Diretorio();
             if ((caminho == "") || (caminho == string.Empty))
             {
                 Console.WriteLine("");
                 Console.WriteLine("Escolha um ID para realizar uma ação, ou aperte ENTER para voltar.");
-                string Prosseguir = Console.ReadLine();
+                string id = Console.ReadLine();
 
-                if (!ExisteID(listaSubpastasOrder, Prosseguir))
+                if (!ExisteDiretorio(listaSubpastasOrder, id))
                 {
                     return;
                 }
 
-                subpasta = listaSubpastasOrder.Find(x => x.ID == Convert.ToInt64(Prosseguir));
+                diretorio = listaSubpastasOrder.Find(x => x.ID == Convert.ToInt64(id));
             }
             else
             {
-                subpasta = AcessaPastaPrimeiraVez(caminho);
-                if (subpasta == null)
+                diretorio = AcessaPastaPrimeiraVez(caminho);
+                if (diretorio == null)
                 {
                     return;
                 }
@@ -105,13 +105,13 @@ namespace INeedSpace
             do
             {
                 Console.Clear();
-                Console.WriteLine("O que você deseja fazer com {0}?", subpasta.Nome);
+                Console.WriteLine("O que você deseja fazer com {0}?", diretorio.Nome);
                 Console.WriteLine("-------------------------------------------------------");
-                Console.WriteLine("Nome: " + subpasta.Nome);
-                Console.WriteLine("Tamanho: " + ConverteByte(subpasta.Tamanho));
-                Console.WriteLine("Caminho: " + subpasta.Caminho);
+                Console.WriteLine("Nome: " + diretorio.Nome);
+                Console.WriteLine("Tamanho: " + ConverteByte(diretorio.Tamanho));
+                Console.WriteLine("Caminho: " + diretorio.Caminho);
                 Console.WriteLine("-------------------------------------------------------");
-                Console.WriteLine("[1] Acessar");  
+                Console.WriteLine("[1] Acessar");
                 Console.WriteLine("[2] Apagar");
                 Console.WriteLine("[3] Mostrar arquivos do diretório");
                 Console.WriteLine("[4] Abrir diretório no explorer");
@@ -122,26 +122,26 @@ namespace INeedSpace
                 switch (opcao)
                 {
                     case "1":
-                        AcessaPasta(subpasta.Caminho);
+                        AcessaPasta(diretorio.Caminho);
                         break;
 
                     case "2":
-                        if (ApagaPasta(subpasta))
+                        if (ApagaPasta(diretorio))
                         {
                             return;
                         }
                         break;
 
                     case "3":
-                        MostrarArquivos(subpasta);
+                        MostrarArquivos(diretorio);
                         break;
 
                     case "4":
-                        Process.Start(subpasta.Caminho);
+                        Process.Start(diretorio.Caminho);
                         break;
 
                     case "5":
-                        RenomeiaPasta(subpasta);
+                        RenomeiaPasta(diretorio);
                         break;
 
                     case "6":
@@ -255,6 +255,7 @@ namespace INeedSpace
 
         public static void MostrarArquivos(Diretorio diretorio)
         {
+
             List<Arquivo> listaArquivos = new List<Arquivo>();
             DirectoryInfo infoDir = new DirectoryInfo(diretorio.Caminho);
 
@@ -272,17 +273,36 @@ namespace INeedSpace
                 Arquivo arquivo = new Arquivo();
 
                 arquivo.Caminho = file.FullName;
-                arquivo.Nome = file.Name;
+                arquivo.Nome = file.Name; 
+                arquivo.Extensao = file.Extension;
                 arquivo.Tamanho = file.Length;
                 arquivo.ID = id;
 
-                Console.WriteLine("[{0}] {1} = {2}", arquivo.ID, arquivo.Nome, ConverteByte(arquivo.Tamanho));
+                Console.WriteLine("[{0}] {1}{2} = {3}", arquivo.ID, arquivo.Nome, arquivo.Extensao, ConverteByte(arquivo.Tamanho));
 
                 id++;
             }
             Console.WriteLine("");
 
-            MenuArquivo.Menu(listaArquivos);
+            SelecionarArquivo(listaArquivos);
+        }
+
+        public static void SelecionarArquivo(List<Arquivo> listaArquivos)
+        {
+            var arquivo = new Arquivo();
+
+            Console.WriteLine("");
+            Console.WriteLine("Escolha um ID para realizar uma ação, ou aperte ENTER para voltar.");
+            string id = Console.ReadLine();
+
+            if (!ExisteArquivo(listaArquivos, id))
+            {
+                return;
+            }
+
+            arquivo = listaArquivos.Find(x => x.ID == Convert.ToInt64(id));
+
+            MenuArquivo.Menu(arquivo);
         }
 
         public static Diretorio AcessaPastaPrimeiraVez(string caminho)
@@ -395,7 +415,7 @@ namespace INeedSpace
             }
         }
 
-        static string ConverteByte(long bytes)
+        public static string ConverteByte(long bytes)
         {
             double tamanho = 0;
             if (bytes > 1000000000)
@@ -418,7 +438,32 @@ namespace INeedSpace
             }
         }
 
-        public static bool ExisteID(List<Diretorio> listaOdernadaDiretorios, string id)
+        public static bool ExisteArquivo(List<Arquivo> listaArquivo, string id)
+        {
+            try
+            {
+                Arquivo subpasta = listaArquivo.Find(x => x.ID == Convert.ToInt64(id));
+
+                if (subpasta != null)
+                {
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("ID desconhecido. Aperte qualquer tecla para voltar.");
+                    Console.ReadKey();
+
+                    return false;
+                }
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+        public static bool ExisteDiretorio(List<Diretorio> listaOdernadaDiretorios, string id)
         {
             try
             {

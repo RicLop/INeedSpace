@@ -5,3 +5,10 @@ C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\obj\Debug\INeedSpace.csprojAss
 C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\obj\Debug\INeedSpace.csproj.CoreCompileInputs.cache
 C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\obj\Debug\INeedSpace.exe
 C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\obj\Debug\INeedSpace.pdb
+C:\Projeto\INeedSpace\INeedSpace\obj\Debug\INeedSpace.exe
+C:\Projeto\INeedSpace\INeedSpace\obj\Debug\INeedSpace.pdb
+C:\Projeto\INeedSpace\INeedSpace\bin\Debug\INeedSpace.exe.config
+C:\Projeto\INeedSpace\INeedSpace\bin\Debug\INeedSpace.exe
+C:\Projeto\INeedSpace\INeedSpace\bin\Debug\INeedSpace.pdb
+C:\Projeto\INeedSpace\INeedSpace\obj\Debug\INeedSpace.csprojAssemblyReference.cache
+C:\Projeto\INeedSpace\INeedSpace\obj\Debug\INeedSpace.csproj.CoreCompileInputs.cache

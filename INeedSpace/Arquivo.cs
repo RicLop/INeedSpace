@@ -12,6 +12,8 @@ namespace INeedSpace
 
         public string Nome { get; set; }
 
+        public string Extensao { get; set; }
+
         public string Caminho { get; set; }
 
         public long Tamanho { get; set; }
