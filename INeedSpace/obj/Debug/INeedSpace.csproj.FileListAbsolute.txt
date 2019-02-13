@@ -1,0 +1,7 @@
+C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\bin\Debug\INeedSpace.exe.config
+C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\bin\Debug\INeedSpace.exe
+C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\bin\Debug\INeedSpace.pdb
+C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\obj\Debug\INeedSpace.csprojAssemblyReference.cache
+C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\obj\Debug\INeedSpace.csproj.CoreCompileInputs.cache
+C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\obj\Debug\INeedSpace.exe
+C:\Users\Rikka\source\repos\INeedSpace\INeedSpace\obj\Debug\INeedSpace.pdb
